@@ -4,11 +4,11 @@ let credits = 23580;
 let pricePerDroid = 3000;
 let droidAmount;
 
-droidAmount = Number(prompt("Please, type in the amount of droids you would like to buy."));
-if (!droidAmount) {
+droidAmount = prompt("Please, type in the amount of droids you would like to buy.");
+if (droidAmount === null) {
     console.log("Cancelled by the user!");
 } else {
-    let totalPrice = droidAmount * pricePerDroid;
+    let totalPrice = Number(droidAmount) * pricePerDroid;
     if (totalPrice >credits) {
         alert("There is not enough money on your bank account! You can afford only " + Math.floor(credits/pricePerDroid) + " droids");
     } else {
