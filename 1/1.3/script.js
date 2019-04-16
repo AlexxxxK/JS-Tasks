@@ -11,20 +11,20 @@ destinationCountry = prompt("Please enter the country o shipment").toLowerCase()
 switch(destinationCountry) {
     case "china":
         console.log(`Shipment to ${destinationCountry} will cost ${SHIPPING_PRICE_CHINA} credits`);
-    break;
+        break;
     case "south america":
         console.log(`Shipment to ${destinationCountry} will cost ${SHIPPING_PRICE_SOUTH_AMERICA} credits`);
-    break;
+        break;
     case "australia":
         console.log(`Shipment to ${destinationCountry} will cost ${SHIPPING_PRICE_AUSTRALIA} credits`);
-    break;
+        break;
     case "india":
         console.log(`Shipment to ${destinationCountry} will cost ${SHIPPING_PRICE_INDIA} credits`);
-    break;
+        break;
     case "jamaica":
         console.log(`Shipment to ${destinationCountry} will cost ${SHIPPING_PRICE_JAMAICA} credits`);
-    break;
+        break;
     default:
         console.log(`Shipment is not available for your country`);
-    break;
+        break;
 }
