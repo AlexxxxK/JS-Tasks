@@ -7,9 +7,7 @@ const SHIPPING_PRICE_AUSTRALIA = 170;
 const SHIPPING_PRICE_INDIA = 80;
 const SHIPPING_PRICE_JAMAICA = 120;
 
-destinationCountry = prompt("Please enter the country o shipment");
-destinationCountry.toLowerCase();
-
+destinationCountry = prompt("Please enter the country o shipment").toLowerCase();
 switch(destinationCountry) {
     case "china":
         console.log(`Shipment to ${destinationCountry} will cost ${SHIPPING_PRICE_CHINA} credits`);
