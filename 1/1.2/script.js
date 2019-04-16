@@ -11,7 +11,7 @@ if (droidAmount === null) {
 } else {
     totalPrice = droidAmount * pricePerDroid;
     if (totalPrice > credits) {
-        alert("There is not enough money on your bank account!);
+        alert("There is not enough money on your bank account!");
     } else {
         console.log(`You have bought ${droidAmount} droids, there are ${credits - totalPrice} credits left on your account.`);
     }
