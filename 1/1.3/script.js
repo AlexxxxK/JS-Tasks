@@ -8,6 +8,9 @@ const SHIPPING_PRICE_INDIA = 80;
 const SHIPPING_PRICE_JAMAICA = 120;
 
 destinationCountry = prompt("Please enter the country of shipment").toLowerCase();
+if (destinationCountry === null) {
+    console.log("Cancelled by the user");
+}
 switch(destinationCountry) {
     case "china":
         console.log(`Shipment to ${destinationCountry} will cost ${SHIPPING_PRICE_CHINA} credits`);
