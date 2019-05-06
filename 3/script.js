@@ -19,11 +19,9 @@ const addLogin = function(allLogins, login) {
   if (!isLoginUnique(allLogins, login)) {
     console.log('Такой логин уже используется!');
   } else {
-    allLogins.push(login);
+    return allLogins.push(login);
     console.log('Логин успешно добавлен!');
   }
-
-  return allLogins;
 };
 
 // Вызовы функции для проверки

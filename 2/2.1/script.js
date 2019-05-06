@@ -8,7 +8,8 @@ do {
     input = prompt("Введите число");
     if (input === null) {
         break;
-    } else if (Number.isNaN(Number(input))) {
+    }
+    if (Number.isNaN(Number(input))) {
         alert("Было введено не число, попробуйте еще раз");
     } else {
         numbers.push(Number(input));
