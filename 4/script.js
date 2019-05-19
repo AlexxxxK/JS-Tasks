@@ -22,7 +22,7 @@ const notepad = {
      * Принимает: идентификатор заметки
      * Возвращает: заметку с совпавшим полем id или undefined если ничего не найдено
      */
-    return this.notes[this.notes.findIndex(note => note.id === id)] || undefined;
+    return this.notes[this.notes.findIndex(note => note.id === id)];
   },
   saveNote(note) {
     /*
@@ -52,14 +52,7 @@ const notepad = {
      * Принимает: идентификатор заметки и объект, полями которого надо обновить заметку
      * Возвращает: обновленную заметку
      */
-    for (const note of this.notes) {
-      if (note.id === id) {
-        for (const key in updatedContent) {
-          note[key] = updatedContent[key];   
-        }
-        return note;
-      }
-    }
+    return Object.assign(this.findNoteById(id), updatedContent);
   },
   updateNotePriority(id, priority) {
     /*
@@ -68,7 +61,7 @@ const notepad = {
      * Принимает: идентификатор заметки и ее новый приоритет
      * Возвращает: обновленную заметку
      */
-    return this.notes[this.notes.findIndex(note => note.id === id)].priority = priority;
+    return this.findNoteById(id).priority = priority;
   },
   filterNotesByQuery(query) {
     /*
