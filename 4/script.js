@@ -32,7 +32,7 @@ const notepad = {
      * Возвращает: сохраненную заметку
      */
     this.notes.push(note);
-    return this.notes[this.notes.length - 1];
+    return note;
   },
   deleteNote(id) {
     /*
@@ -52,7 +52,8 @@ const notepad = {
      * Принимает: идентификатор заметки и объект, полями которого надо обновить заметку
      * Возвращает: обновленную заметку
      */
-    return Object.assign(this.findNoteById(id), updatedContent);
+    Object.assign(this.findNoteById(id), updatedContent);
+    return this.findNoteById(id);
   },
   updateNotePriority(id, priority) {
     /*

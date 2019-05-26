@@ -13,7 +13,7 @@ const Notepad = function Notepad(notes = []) {
 
   this.saveNote = function(note) {
     this.notes.push(note);
-    return this.notes[this.notes.length - 1];
+    return note;
   };
 
   this.deleteNote = function(id) {
@@ -42,8 +42,7 @@ const Notepad = function Notepad(notes = []) {
 
   this.filterNotesByPriority = function(priority) {
     const filteredNotes = [];
-    for (const note of this.notes)
-      if (note.priority === priority) filteredNotes.push(note);
+    for (const note of this.notes) if (note.priority === priority) filteredNotes.push(note);
     return filteredNotes;
   };
 };
@@ -104,36 +103,24 @@ console.log("Все текущие заметки: ", notepad.getNotes());
  */
 notepad.updateNotePriority("id-4", Notepad.Priority.NORMAL);
 
-console.log(
-  "Заметки после обновления приоритета для id-4: ",
-  notepad.getNotes()
-);
+console.log("Заметки после обновления приоритета для id-4: ", notepad.getNotes());
 
 /*
  * Решил что фреймворки отложу немного, понижаю приоритет
  */
 notepad.updateNotePriority("id-3", Notepad.Priority.LOW);
 
-console.log(
-  "Заметки после обновления приоритета для id-3: ",
-  notepad.getNotes()
-);
+console.log("Заметки после обновления приоритета для id-3: ", notepad.getNotes());
 
 /*
  * Решил отфильтровать заметки по слову html
  */
-console.log(
-  'Отфильтровали заметки по ключевому слову "html": ',
-  notepad.filterNotesByQuery("html")
-);
+console.log('Отфильтровали заметки по ключевому слову "html": ', notepad.filterNotesByQuery("html"));
 
 /*
  * Решил отфильтровать заметки по слову javascript
  */
-console.log(
-  'Отфильтровали заметки по ключевому слову "javascript": ',
-  notepad.filterNotesByQuery("javascript")
-);
+console.log('Отфильтровали заметки по ключевому слову "javascript": ', notepad.filterNotesByQuery("javascript"));
 
 /*
  * Хочу посмотреть только заметки с нормальным приоритетом
@@ -150,10 +137,7 @@ notepad.updateNoteContent("id-3", {
   title: "Get comfy with React.js or Vue.js",
 });
 
-console.log(
-  "Заметки после обновления контента заметки с id-3: ",
-  notepad.getNotes()
-);
+console.log("Заметки после обновления контента заметки с id-3: ", notepad.getNotes());
 
 /*
  * Повторил HTML и CSS, удаляю запись c id-2
