@@ -1,6 +1,6 @@
 "use strict";
 
-const users = require("./users.js");
+require("./users.js");
 
 //Массив имен всех пользователей у которых есть друг с указанным именем.
 

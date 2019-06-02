@@ -1,6 +1,6 @@
 "use strict";
 
-const users = require("./users.js");
+require("./users.js");
 
 //Получить массив имен всех пользователей (поле name).
 const getAllNames = users => users.map(user => user.name);

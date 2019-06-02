@@ -1,6 +1,6 @@
 "use strict";
 
-const users = require("./users.js");
+require("./users.js");
 
 //Получить пользоваля (не массив) по email (поле email, он уникальный).
 

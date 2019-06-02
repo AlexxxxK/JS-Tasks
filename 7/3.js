@@ -1,6 +1,6 @@
 "use strict";
 
-const users = require("./users.js");
+require("./users.js");
 
 //Получить массив имен пользователей по полу (поле gender).
 const getUsersByGender = (users, gender) =>

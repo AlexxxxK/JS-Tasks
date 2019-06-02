@@ -1,6 +1,6 @@
 "use strict";
 
-const users = require("./users.js");
+require("./users.js");
 
 //Получить массив пользователей попадающих в возрастную категорию от min до max лет (поле age).
 

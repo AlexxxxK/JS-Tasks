@@ -1,6 +1,6 @@
 "use strict";
 
-const users = require("./users.js");
+require("./users.js");
 
 //Получить общую сумму баланса (поле balance) всех пользователей.
 
