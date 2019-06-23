@@ -165,13 +165,10 @@ const createNoteFooter = priority => {
   prioritySection.append(decrPriorityBtn, incrPriorityBtn, notePriority);
 
   const editNoteSection = prioritySection.cloneNode(false);
-
   const editNoteBtn = createButton(NOTE_ACTIONS.EDIT, ICON_TYPES.EDIT);
-
   const delNoteBtn = createButton(NOTE_ACTIONS.DELETE, ICON_TYPES.DELETE);
 
   editNoteSection.append(editNoteBtn, delNoteBtn);
-
   noteFooter.append(prioritySection, editNoteSection);
 
   return noteFooter;
@@ -186,7 +183,6 @@ const createListItem = ({ id, title, body, priority }) => {
   note.classList.add('note');
 
   note.append(createNoteContent(title, body), createNoteFooter(priority));
-
   noteListItem.appendChild(note);
 
   return noteListItem;
