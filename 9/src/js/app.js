@@ -123,9 +123,14 @@ const initialNotes = [
 ];
 
 const notepad = new Notepad(initialNotes);
-const listRef = document.querySelector('.note-list');
+const refs = {
+  listRef: document.querySelector('.note-list'),
+  noteEditorForm: document.querySelector('.note-editor'),
+  searchForm: document.querySelector('.search-form'),
+};
+/* const listRef = document.querySelector('.note-list');
 const noteEditorForm = document.querySelector('.note-editor');
-const search = document.querySelector('.search-form');
+const search = document.querySelector('.search-form'); */
 
 const createNoteContent = (title, body) => {
   const noteContent = document.createElement('div');
@@ -208,7 +213,7 @@ const createListItem = ({ id, title, body, priority }) => {
 const renderNoteList = (listRef, notes) =>
   listRef.append(...notes.map(note => createListItem(note)));
 
-renderNoteList(listRef, notepad.notes);
+renderNoteList(refs.listRef, notepad.notes);
 
 // Add new note
 
@@ -236,11 +241,11 @@ const creAteNewNote = event => {
   };
 
   notepad.saveNote(note);
-  addListItem(listRef, note);
+  addListItem(refs.listRef, note);
   event.currentTarget.reset();
 };
 
-noteEditorForm.addEventListener('submit', creAteNewNote);
+refs.noteEditorForm.addEventListener('submit', creAteNewNote);
 
 // Delete note
 
@@ -252,7 +257,7 @@ const removeListItem = ({ target }) => {
   listItem.remove();
 };
 
-listRef.addEventListener('click', removeListItem);
+refs.listRef.addEventListener('click', removeListItem);
 
 // Filter notes
 
@@ -261,9 +266,9 @@ const filterNotes = event => {
   const [input] = [...event.target];
   const value = input.value;
   const filteredNotes = notepad.filterNotesByQuery(value);
-  listRef.innerHTML = '';
-  renderNoteList(listRef, filteredNotes);
+  refs.listRef.innerHTML = '';
+  renderNoteList(refs.listRef, filteredNotes);
   event.currentTarget.reset();
 };
 
-search.addEventListener('submit', filterNotes);
+refs.searchForm.addEventListener('submit', filterNotes);
