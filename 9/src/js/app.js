@@ -229,7 +229,7 @@ const creAteNewNote = event => {
 
   if (isFormEmpty(input, textarea)) {
     alert('Необходимо заполнить все поля!');
-    event.currentTarget.reset();
+    //event.currentTarget.reset();
     return;
   }
 
