@@ -218,7 +218,7 @@ renderNoteList(refs.listRef, notepad.notes);
 // Add new note
 
 const isFormEmpty = (input, textarea) =>
-  input.value.trim().length === 0 || textarea.value.trim().length === 0;
+  !input.value.trim().length || !textarea.value.trim().length;
 
 const addListItem = (listRef, note) =>
   listRef.appendChild(createListItem(note));
@@ -261,14 +261,11 @@ refs.listRef.addEventListener('click', removeListItem);
 
 // Filter notes
 
-const filterNotes = event => {
-  event.preventDefault();
-  const [input] = [...event.target];
-  const value = input.value;
+const filterNotes = ({ target }) => {
+  const value = target.value;
   const filteredNotes = notepad.filterNotesByQuery(value);
   refs.listRef.innerHTML = '';
   renderNoteList(refs.listRef, filteredNotes);
-  event.currentTarget.reset();
 };
 
-refs.searchForm.addEventListener('submit', filterNotes);
+refs.searchForm.addEventListener('input', filterNotes);
