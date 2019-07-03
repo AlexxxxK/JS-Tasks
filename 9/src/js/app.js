@@ -223,7 +223,7 @@ const isFormEmpty = (input, textarea) =>
 const addListItem = (listRef, note) =>
   listRef.appendChild(createListItem(note));
 
-const creAteNewNote = event => {
+const createNewNote = event => {
   event.preventDefault();
   const [input, textarea] = [...event.target.elements];
 
@@ -245,7 +245,7 @@ const creAteNewNote = event => {
   event.currentTarget.reset();
 };
 
-refs.noteEditorForm.addEventListener('submit', creAteNewNote);
+refs.noteEditorForm.addEventListener('submit', createNewNote);
 
 // Delete note
 
