@@ -14,7 +14,7 @@ const handleEditorSubmit = event => {
 
   if (isFormEmpty(input, textarea)) {
     notyf.error(NOTIFICATION_MESSAGES.EDITOR_FIELDS_EMPTY);
-    //event.currentTarget.reset();
+    // event.currentTarget.reset();
     return;
   }
 

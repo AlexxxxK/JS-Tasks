@@ -27,8 +27,8 @@ refs.openEditorBtn.addEventListener("click", handleOpenEditorBtnClick);
 // Add new note
 refs.noteEditorForm.addEventListener("submit", handleEditorSubmit);
 
-//Delete note
+// Delete note
 refs.listRef.addEventListener("click", removeListItem);
 
-//Filter notes by query
+// Filter notes by query
 refs.searchForm.addEventListener("input", handleSearchFormInput);
