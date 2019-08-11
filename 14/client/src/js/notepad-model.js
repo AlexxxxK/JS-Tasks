@@ -16,49 +16,65 @@ export default class Notepad {
     this._notes = notes;
   }
 
-  get() {
-    return api.getNotes().then(notes => {
+  async get() {
+    try {
+      const notes = await api.getNotes();
       this._notes = notes;
 
       return this._notes;
-    });
+    } catch (error) {
+      throw error;
+    }
   }
-  
+
   findNoteById(id) {
     return this._notes.find(note => note.id === id);
   }
 
-  saveNote(note) {
-    return api.saveNote(note).then(savedNote => {
+  async saveNote(note) {
+    try {
+      const savedNote = await api.saveNote(note);
       this._notes.push(savedNote);
 
       return savedNote;
-    });
+    } catch (error) {
+      throw error;
+    }
   }
 
-  deleteNote(id) {
-    return api.deleteNote(id).then(() => {
+  async deleteNote(id) {
+    try {
+      await api.deleteNote(id);
       this._notes = this._notes.filter(note => note.id !== id);
 
       return id;
-    });
+    } catch (error) {
+      throw error;
+    }
   }
 
-  updateNoteContent(id, newContent) {
-    return api.updateNoteContent(id, newContent).then(updatedNote => {
+  async updateNoteContent(id, newContent) {
+    try {
+      const updatedNote = await api.updateNoteContent(id, newContent);
       this._notes = this._notes.map(note =>
         note.id === updatedNote.id ? updatedNote : note
       );
+
       return updatedNote;
-    });
+    } catch (error) {
+      throw error;
+    }
   }
 
-  updateNotePriority(id, priority) {
-    return api.updateNotePriority(id, priority).then(updatedNote => {
+  async updateNotePriority(id, priority) {
+    try {
+      const updatedNote = await api.updateNotePriority(id, priority);
       this.findNoteById(id).priority = priority;
 
       return updatedNote;
-    });
+    } catch (error) {
+      throw error;
+    }
   }
 
   filterNotesByQuery(query) {

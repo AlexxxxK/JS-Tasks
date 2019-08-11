@@ -1,75 +1,53 @@
-const URL = "http://localhost:3000/notes";
+import axios from "axios";
 
-export const getNotes = () => {
-  return fetch(URL).then(response => {
-    if (response.ok) {
-      return response.json();
-    }
+axios.defaults.baseURL = "http://localhost:3000/";
 
-    throw new Error(`Error while fetching: ${response.statusText}`);
-  });
+export const getNotes = async () => {
+  try {
+    const response = await axios.get("notes");
+
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
 };
 
-export const saveNote = note => {
-  const options = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(note),
-  };
-  return fetch(URL, options).then(response => {
-    if (response.ok) {
-      return response.json();
-    }
+export const saveNote = async note => {
+  try {
+    const response = await axios.post("notes", note);
 
-    throw new Error("Error while saving: " + response.statusText);
-  });
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
 };
 
-export const deleteNote = id => {
-  const options = {
-    method: "DELETE",
-  };
-  return fetch(`${URL}/${id}`, options).then(response => {
-    if (response.ok) {
-      return response.json();
-    }
+export const deleteNote = async id => {
+  try {
+    await axios.delete(`notes/${id}`);
 
-    throw new Error("Error while deleting: " + response.statusText);
-  });
+    return id;
+  } catch (error) {
+    throw error;
+  }
 };
 
-export const updateNoteContent = (id, newContent) => {
-  const options = {
-    method: "PATCH",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(newContent),
-  };
-  fetch(`${URL}/${id}`, options).then(response => {
-    if (response.ok) {
-      return response.json();
-    }
+export const updateNoteContent = async (id, newContent) => {
+  try {
+    const response = await axios.patch(`notes/${id}`, newContent);
 
-    throw new Error("Error while updating: " + response.statusText);
-  });
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
 };
 
-export const updateNotePriority = (id, newPriority) => {
-  const options = {
-    method: "PATCH",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(newPriority),
-  };
-  fetch(`${URL}/${id}`, options).then(response => {
-    if (response.ok) {
-      return response.json();
-    }
+export const updateNotePriority = async (id, newPriority) => {
+  try {
+    const response = await axios.patch(`notes/${id}`, newPriority);
 
-    throw new Error("Error while updating: " + response.statusText);
-  });
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
 };

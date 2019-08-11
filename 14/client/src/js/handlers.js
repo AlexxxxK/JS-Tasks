@@ -25,35 +25,42 @@ export const handleEditorSubmit = event => {
   const [input, textarea] = [...event.target.elements];
 
   if (isFormEmpty(input, textarea)) {
-    notyf.error(NOTIFICATION_MESSAGES.EDITOR_FIELDS_EMPTY);
+    notyf.open({
+      type: "warning",
+      message: `${NOTIFICATION_MESSAGES.EDITOR_FIELDS_EMPTY}`,
+    });
     //event.currentTarget.reset();
     return;
   }
 
-  notepad
-    .saveNote(createNewNote(input.value, textarea.value))
-    .then(addedNote => {
+  const addNewNote = async (title, text) => {
+    try {
+      const addedNote = await notepad.saveNote(createNewNote(title, text));
       CreateNotesListItem(addedNote);
       notyf.success(NOTIFICATION_MESSAGES.NOTE_ADDED_SUCCESS);
-    })
-    .catch(error => notyf.error(error));
+    } catch (error) {
+      notyf.error(`${error}`);
+    }
+  };
+
+  addNewNote(input.value, textarea.value);
   event.currentTarget.reset();
   MicroModal.close("note-editor-modal");
 };
 
 // Remove note
 
-export const removeListItem = ({ target }) => {
+export const removeListItem = async ({ target }) => {
   if (target.parentNode.dataset.action !== NOTE_ACTIONS.DELETE) return;
   const listItem = target.closest("li");
   const id = listItem.dataset.id;
-  notepad
-    .deleteNote(id)
-    .then(() => {
-      listItem.remove();
-      notyf.success(NOTIFICATION_MESSAGES.NOTE_DELETED_SUCCESS);
-    })
-    .catch(error => notyf.error(error));
+  try {
+    await notepad.deleteNote(id);
+    listItem.remove();
+    notyf.success(NOTIFICATION_MESSAGES.NOTE_DELETED_SUCCESS);
+  } catch (error) {
+    notyf.error(`${error}`);
+  }
 };
 
 // Search notes
@@ -64,3 +71,15 @@ export const handleSearchFormInput = ({ target }) => {
   refs.listRef.innerHTML = "";
   renderNotesArray(filteredNotes);
 };
+
+// Edit note
+
+// export const handleNoteEditBtnClick = ({ target }) => {
+//   if (target.parentNode.dataset.action !== NOTE_ACTIONS.EDIT) return;
+//   MicroModal.show("note-editor-modal");
+//   const listItem = target.closest("li");
+//   const id = listItem.dataset.id;
+//   const noteToEdit = notepad.findNoteById(id);
+//   refs.noteEditorTitle.value = noteToEdit.title;
+//   refs.noteEditorBody.value = noteToEdit.body;
+// };
